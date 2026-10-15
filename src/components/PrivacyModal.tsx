@@ -108,7 +108,7 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({
               <span><strong>Sede:</strong> {COMPANY_ADDRESS.full}</span>
             </div>
             <div className="text-[11px] text-slate-500 pt-1">
-              Operação e atendimento em todo o Brasil através de filiais e parceiros homologados.
+              Operação e atendimento em todo o Brasil através de filiais e empresas parceiras.
             </div>
           </div>
 

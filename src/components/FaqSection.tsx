@@ -14,12 +14,12 @@ export const FaqSection: React.FC = () => {
     {
       question: 'Quais cidades a TRZ Caçambas atende?',
       answer:
-        'A TRZ Caçambas possui atuação em todo o Brasil através de suas filiais e ampla rede de parceiros homologados. A disponibilidade e a rota de entrega para sua localidade são confirmadas diretamente no WhatsApp em poucos minutos.',
+        'A TRZ Caçambas possui atuação em todo o Brasil através de filiais e empresas parceiras. A disponibilidade e a rota de entrega para sua localidade são confirmadas diretamente no WhatsApp.',
     },
     {
       question: 'Onde fica a sede da TRZ Caçambas?',
       answer:
-        `Nossa sede administrativa está localizada em São Paulo: ${COMPANY_ADDRESS.full}, sob o CNPJ ${COMPANY_CNPJ}. A partir dessa base corporativa, coordenamos operações com filiais e parceiros por todo o território nacional.`,
+        `Nossa sede administrativa está localizada em São Paulo: ${COMPANY_ADDRESS.full}, sob o CNPJ ${COMPANY_CNPJ}. A partir dessa base corporativa, coordenamos operações com filiais e empresas parceiras por todo o território nacional.`,
     },
     {
       question: 'Como é calculado o orçamento da locação?',

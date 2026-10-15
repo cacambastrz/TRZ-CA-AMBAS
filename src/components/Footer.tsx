@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
               <div className="flex items-start gap-2">
                 <Globe2 className="w-4 h-4 text-[#DE722B] shrink-0 mt-0.5" />
                 <span className="text-slate-300">
-                  <strong className="text-white">Atendimento em todo o Brasil</strong> através de filiais e rede parceira homologada.
+                  <strong className="text-white">Atendimento em todo o Brasil</strong> através de filiais e empresas parceiras.
                   Disponibilidade confirmada por cidade diretamente no WhatsApp.
                 </span>
               </div>

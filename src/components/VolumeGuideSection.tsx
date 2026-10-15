@@ -125,61 +125,78 @@ export const VolumeGuideSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Comparison Cards (Without claiming exact m3 numbers or unconfirmed labels) */}
+        {/* Comparison Cards with TRZ_ASSETS.cacambas on top of EACH card */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {needs.map((item) => (
             <div
               key={item.title}
-              className={`rounded-2xl p-7 flex flex-col justify-between transition-all duration-300 relative border ${
+              className={`rounded-2xl flex flex-col justify-between transition-all duration-300 relative border overflow-hidden ${
                 item.highlighted
                   ? 'border-[#0D2340] bg-slate-50/80 shadow-md ring-1 ring-[#0D2340]'
                   : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-md'
               }`}
             >
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#DE722B] block mb-1">
-                  {item.badge}
+              {/* Photo on Top of Each Card */}
+              <div className="relative h-44 w-full bg-gradient-to-b from-[#0D2340] to-[#081628] flex items-center justify-center overflow-hidden rounded-t-2xl">
+                <img
+                  src={TRZ_ASSETS.cacambas}
+                  alt={`Caçamba TRZ - ${item.title}`}
+                  className="h-44 w-full object-cover rounded-t-2xl transform hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-2 right-3 text-[10px] text-slate-300 bg-slate-900/85 px-2 py-0.5 rounded border border-white/10">
+                  Imagem ilustrativa
                 </span>
-                <h3 className="text-xl font-black text-[#0D2340]">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-slate-500 font-medium mb-6">
-                  {item.subtitle}
-                </p>
-
-                <div className="space-y-3 mb-6">
-                  <span className="text-xs font-bold text-slate-700 block uppercase tracking-wide">
-                    Adequado para:
-                  </span>
-                  {item.idealFor.map((point, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-600">
-                      <span className="w-1.5 h-1.5 bg-[#0D2340] transform rotate-45 mt-1.5 shrink-0" />
-                      <span>{point}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="p-3.5 bg-slate-100/70 rounded-xl text-xs text-slate-600 mb-6">
-                  <span className="font-semibold text-slate-800 block mb-0.5">Dica prática:</span>
-                  {item.recommendation}
-                </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-200">
-                <a
-                  href={getContextualWhatsAppUrl({ volume: item.ctaContext })}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors ${
-                    item.highlighted
-                      ? 'bg-[#DE722B] text-white hover:bg-[#C55E1C]'
-                      : 'bg-[#0D2340] text-white hover:bg-[#DE722B]'
-                  }`}
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Consultar para este perfil</span>
-                  <ArrowRight className="w-3.5 h-3.5 opacity-80" />
-                </a>
+              {/* Card Body */}
+              <div className="p-7 flex flex-col justify-between flex-grow">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#DE722B] block mb-1">
+                    {item.badge}
+                  </span>
+                  <h3 className="text-xl font-black text-[#0D2340]">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium mb-6">
+                    {item.subtitle}
+                  </p>
+
+                  <div className="space-y-3 mb-6">
+                    <span className="text-xs font-bold text-slate-700 block uppercase tracking-wide">
+                      Adequado para:
+                    </span>
+                    {item.idealFor.map((point, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-600">
+                        <span className="w-1.5 h-1.5 bg-[#0D2340] transform rotate-45 mt-1.5 shrink-0" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-3.5 bg-slate-100/70 rounded-xl text-xs text-slate-600 mb-6">
+                    <span className="font-semibold text-slate-800 block mb-0.5">Dica prática:</span>
+                    {item.recommendation}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200">
+                  <a
+                    href={getContextualWhatsAppUrl({ volume: item.ctaContext })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors ${
+                      item.highlighted
+                        ? 'bg-[#DE722B] text-white hover:bg-[#C55E1C]'
+                        : 'bg-[#0D2340] text-white hover:bg-[#DE722B]'
+                    }`}
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Consultar para este perfil</span>
+                    <ArrowRight className="w-3.5 h-3.5 opacity-80" />
+                  </a>
+                </div>
               </div>
             </div>
           ))}
