@@ -1,0 +1,6 @@
+{
+  "name": "TRZ Caçambas - Locação de Caçambas de Entulho",
+  "description": "Locação de caçambas de entulho para obras e reformas. Orçamento sob medida e entrega rápida pelo WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
