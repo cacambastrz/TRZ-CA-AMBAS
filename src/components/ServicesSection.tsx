@@ -1,48 +1,49 @@
 import React from 'react';
 import { Home, Building2, Hammer, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { getContextualWhatsAppUrl } from '../utils/whatsapp.ts';
+import { TRZ_ASSETS } from '../utils/assets.ts';
 
 export const ServicesSection: React.FC = () => {
   const services = [
     {
       number: '01',
       title: 'Reformas e Interiores',
-      icon: Home,
-      tagline: 'Apartamentos, residências e espaços comerciais',
+      image: TRZ_ASSETS.cacambas,
+      tagline: 'Apartamentos, residências e comércio',
       description:
-        'Ideal para trocas de revestimento, pisos, drywall, rebaixamento de teto e renovação de cômodos. Agilidade na colocação e retirada para não atrasar cronogramas de pedreiros e arquitetos.',
+        'Trocas de revestimento, pisos, drywall e gesso. Colocação e retirada ágeis para manter o cronograma dos pedreiros sem entulho acumulado.',
       details: [
-        'Resíduos de pisos, cerâmicas e azulejos',
+        'Pisos, cerâmicas e azulejos',
         'Sobras de argamassa e entulho leve',
-        'Opções para espaços urbanos e condomínios',
+        'Adequado para calçadas e condomínios',
       ],
       whatsappContext: 'Locação para Reforma',
     },
     {
       number: '02',
       title: 'Construção Civil',
-      icon: Building2,
-      tagline: 'Fundações, alvenaria e canteiros ativos',
+      image: TRZ_ASSETS.caminhao,
+      tagline: 'Fundações, alvenaria e canteiros',
       description:
-        'Suporte contínuo para obras de todos os portes. Organização indispensável para o canteiro de obras, reduzindo acúmulo de sujeira e facilitando o trânsito seguro de equipes e materiais.',
+        'Organização indispensável para o canteiro de obras. Reduz acúmulo de sujeira e facilita a circulação de operários e materiais.',
       details: [
         'Concreto, tijolos, blocos e terra',
-        'Retirada programada conforme o avanço da obra',
-        'Posicionamento seguro em vias públicas ou recuos',
+        'Retirada programada pelo WhatsApp',
+        'Posicionamento seguro no endereço',
       ],
       whatsappContext: 'Locação para Construção Civil',
     },
     {
       number: '03',
       title: 'Demolições e Quebras',
-      icon: Hammer,
-      tagline: 'Remoção ágil de materiais pesados',
+      image: TRZ_ASSETS.cacambas,
+      tagline: 'Remoção de entulho pesado',
       description:
-        'Volume intenso gerado em curto espaço de tempo. Auxiliamos na logística de descarte com caçambas robustas e suporte ágil na substituição para manter o ritmo da demolição.',
+        'Alto volume gerado rapidamente. Logística de caçambas robustas e suporte ágil na substituição para não travar o andamento da obra.',
       details: [
-        'Quebra de alvenaria e lajes estruturais',
-        'Remoção de telhas e pedregulhos pesados',
-        'Substituição ágil para evitar paralisação',
+        'Quebra de alvenaria e estruturas',
+        'Remoção de telhas e pedregulhos',
+        'Troca ágil de caçambas cheias',
       ],
       whatsappContext: 'Locação para Demolição',
     },
@@ -51,6 +52,7 @@ export const ServicesSection: React.FC = () => {
   return (
     <section id="servicos" className="py-20 bg-slate-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
         <div className="max-w-2xl mb-14">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#DE722B] mb-2">
@@ -61,47 +63,51 @@ export const ServicesSection: React.FC = () => {
             Soluções sob medida para o tamanho da sua obra
           </h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Atendimento direto e sem burocracia para reformas, construções e demolições.
-            Você foca no andamento do projeto enquanto cuidamos do descarte correto.
+            Atendimento direto pelo WhatsApp para reformas, construções e demolições.
+            Você foca no projeto enquanto cuidamos do descarte correto.
           </p>
         </div>
 
-        {/* Services Grid (Clean asymmetric or 3-column layout with generous whitespace) */}
+        {/* Services Grid with Visual Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {services.map((svc) => {
-            const Icon = svc.icon;
-            return (
-              <div
-                key={svc.number}
-                className="bg-white rounded-2xl border border-slate-200/90 p-8 flex flex-col justify-between hover:border-[#DE722B]/40 hover:shadow-lg transition-all duration-300 group relative"
-              >
-                {/* Top Corner Diamond Detail */}
-                <div className="absolute top-6 right-6 w-3 h-3 bg-slate-200 group-hover:bg-[#DE722B] transform rotate-45 transition-colors" />
-
-                <div>
-                  {/* Editorial Index Number & Icon */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-bold font-mono tracking-widest text-[#DE722B]">
-                      {svc.number}.
-                    </span>
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-[#0D2340] group-hover:bg-[#0D2340] group-hover:text-white transition-colors">
-                      <Icon className="w-6 h-6" />
-                    </div>
+          {services.map((svc) => (
+            <div
+              key={svc.number}
+              className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden flex flex-col justify-between hover:border-[#DE722B]/50 hover:shadow-xl transition-all duration-300 group"
+            >
+              <div>
+                {/* Visual Header Image Frame */}
+                <div className="relative h-48 sm:h-52 bg-gradient-to-b from-[#0D2340] to-[#081628] p-4 flex items-center justify-center overflow-hidden">
+                  <img
+                    src={svc.image}
+                    alt={svc.title}
+                    className="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-3 left-3 bg-[#0D2340]/90 backdrop-blur-sm border border-white/10 px-2.5 py-1 rounded text-[11px] font-mono font-bold text-[#DE722B]">
+                    {svc.number}.
                   </div>
+                  <span className="absolute bottom-2 right-3 text-[10px] text-slate-400 bg-slate-900/70 px-1.5 py-0.5 rounded">
+                    Ilustrativa
+                  </span>
+                </div>
 
+                {/* Card Content */}
+                <div className="p-6 sm:p-7">
                   <h3 className="text-xl font-black text-[#0D2340] group-hover:text-[#DE722B] transition-colors">
                     {svc.title}
                   </h3>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mt-1 mb-4">
+                  <p className="text-xs font-semibold text-[#DE722B] uppercase tracking-wide mt-1 mb-3">
                     {svc.tagline}
                   </p>
 
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                  <p className="text-sm text-slate-600 leading-relaxed mb-5">
                     {svc.description}
                   </p>
 
                   {/* Bullet Highlights */}
-                  <div className="space-y-2 pt-4 border-t border-slate-100 mb-8">
+                  <div className="space-y-2 pt-3 border-t border-slate-100">
                     {svc.details.map((detail, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-xs text-slate-600">
                         <span className="w-1.5 h-1.5 bg-[#DE722B] transform rotate-45 mt-1.5 shrink-0" />
@@ -110,28 +116,30 @@ export const ServicesSection: React.FC = () => {
                     ))}
                   </div>
                 </div>
+              </div>
 
-                {/* Direct Action Link */}
+              {/* Direct WhatsApp Action Link */}
+              <div className="p-6 sm:p-7 pt-0">
                 <a
                   href={getContextualWhatsAppUrl({ service: svc.whatsappContext })}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-100 text-xs font-bold uppercase tracking-wider text-[#0D2340] hover:text-[#DE722B] transition-colors group/link"
+                  className="inline-flex items-center justify-between w-full p-3.5 rounded-xl bg-slate-50 hover:bg-[#DE722B] text-[#0D2340] hover:text-white transition-all text-xs font-bold uppercase tracking-wider group/btn"
                 >
                   <span className="flex items-center gap-2">
-                    <MessageCircle className="w-4 h-4 text-[#DE722B]" />
+                    <MessageCircle className="w-4 h-4 text-[#DE722B] group-hover/btn:text-white transition-colors" />
                     <span>Pedir para {svc.title.split(' ')[0]}</span>
                   </span>
-                  <ArrowUpRight className="w-4 h-4 transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                 </a>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* Notice on Availability */}
         <div className="mt-12 text-center text-xs text-slate-500">
-          Valores e disponibilidade de datas calculados sob medida.{' '}
+          Disponibilidade e prazos alinhados por cidade.{' '}
           <strong className="text-slate-700">Consulte disponibilidade para sua cidade no WhatsApp.</strong>
         </div>
       </div>

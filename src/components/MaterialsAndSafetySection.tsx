@@ -1,7 +1,5 @@
 import React from 'react';
-import { AlertTriangle, CheckCircle2, ShieldAlert, Truck, Sparkles, HelpCircle } from 'lucide-react';
-import { getWhatsAppUrl } from '../utils/whatsapp.ts';
-import materialsPhoto from '../assets/images/rubble_materials_1792080196646.jpg';
+import { AlertTriangle, CheckCircle2, ShieldAlert, Truck } from 'lucide-react';
 
 export const MaterialsAndSafetySection: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Sparkles, CheckCircle2, MessageCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle2, MessageCircle, ArrowRight } from 'lucide-react';
 import { getContextualWhatsAppUrl } from '../utils/whatsapp.ts';
-import skipRenovationPhoto from '../assets/images/renovation_skip_1792080196760.jpg';
+import { TRZ_ASSETS } from '../utils/assets.ts';
 
 export const VolumeGuideSection: React.FC = () => {
   const needs = [
@@ -27,25 +27,25 @@ export const VolumeGuideSection: React.FC = () => {
       idealFor: [
         'Construção de casas e sobrados',
         'Ampliação de cômodos e garagens',
-        'Troca total de telhado e madeiramento',
+        'Troca de telhado e madeiramento',
         'Reformas estruturais e alvenaria pesada',
       ],
       recommendation:
-        'Acomoda o fluxo contínuo de resíduos de alvenaria e concreto com excelente aproveitamento de espaço.',
+        'Acomoda o fluxo contínuo de resíduos com excelente aproveitamento de espaço.',
       ctaContext: 'Obra Residencial',
     },
     {
       title: 'Maior Volume',
-      subtitle: 'Demolições e obras de grande porte',
+      subtitle: 'Demolições e obras maiores',
       badge: 'Alto Volume',
       idealFor: [
         'Demolições completas ou parciais',
-        'Remoção de muros e estruturas de concreto',
+        'Remoção de muros e concreto',
         'Obras comerciais ou prediais',
-        'Canteiros com geração intensa e rápida de entulho',
+        'Canteiros com geração intensa de entulho',
       ],
       recommendation:
-        'Planejamento de trocas sucessivas para que o canteiro nunca fique bloqueado por entulho acumulado.',
+        'Planejamento de trocas de caçamba para manter o canteiro sempre desimpedido.',
       ctaContext: 'Maior Volume / Demolição',
     },
   ];
@@ -65,8 +65,8 @@ export const VolumeGuideSection: React.FC = () => {
               Qual é o tamanho da sua necessidade?
             </h2>
             <p className="mt-3 text-base text-slate-600 leading-relaxed">
-              Cada tipo de obra tem um ritmo de geração de entulho. Avalie o perfil do seu projeto
-              para orientarmos a melhor solução de caçamba e tempo de permanência.
+              Cada tipo de obra tem um ritmo próprio. Avalie o perfil do seu projeto
+              para orientarmos a melhor opção e tempo de permanência pelo WhatsApp.
             </p>
           </div>
 
@@ -74,25 +74,24 @@ export const VolumeGuideSection: React.FC = () => {
             <strong className="text-slate-800 block font-semibold mb-1">
               Orientação personalizada sem custos
             </strong>
-            Se estiver em dúvida sobre a quantidade ideal, nossa equipe ajuda a calcular
-            o fluxo direto no WhatsApp para você economizar.
+            Em dúvida sobre o volume? Nossa equipe auxilia na escolha adequada pelo WhatsApp para evitar gastos extras.
           </div>
         </div>
 
-        {/* Highlight Image Banner */}
-        <div className="mb-14 rounded-2xl overflow-hidden border border-slate-200 shadow-md relative bg-[#0D2340]">
+        {/* Highlight Image Banner with Caçambas TRZ */}
+        <div className="mb-14 rounded-2xl overflow-hidden border border-slate-200 shadow-lg relative bg-[#0D2340]">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
             <div className="lg:col-span-7 p-8 sm:p-10 text-white">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#DE722B] mb-2">
                 <span>Canteiro Organizado</span>
                 <span>·</span>
-                <span>Vizinhança Tranquila</span>
+                <span>Vizinhança Segura</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-black leading-tight mb-4">
-                Caçamba posicionada com cuidado, respeitando passeios e garagens
+                Caçamba posicionada com cuidado, respeitando calçadas e garagens
               </h3>
               <p className="text-sm sm:text-base text-slate-300 mb-6 leading-relaxed">
-                A colocação correta evita multas, não bloqueia acessos de pedestres e garante
+                A colocação correta evita transtornos, não bloqueia passagens e assegura
                 estabilidade no solo durante o descarte de materiais pesados.
               </p>
               <div className="flex flex-wrap gap-4 text-xs">
@@ -111,41 +110,32 @@ export const VolumeGuideSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-5 h-64 lg:h-full relative min-h-[260px]">
+            <div className="lg:col-span-5 h-64 lg:h-full relative min-h-[260px] bg-gradient-to-br from-slate-900 to-[#071526] p-6 flex items-center justify-center">
               <img
-                src={skipRenovationPhoto}
-                alt="Caçamba posicionada com segurança em frente à residência em reforma"
-                className="w-full h-full object-cover object-center"
-                referrerPolicy="no-referrer"
+                src={TRZ_ASSETS.cacambas}
+                alt="Caçambas TRZ para obras e reformas"
+                className="max-h-64 max-w-full object-contain drop-shadow-xl"
                 loading="lazy"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (target.src !== '/assets/obra-residencial.jpg') {
-                    target.src = '/assets/obra-residencial.jpg';
-                  }
-                }}
+                referrerPolicy="no-referrer"
               />
+              <span className="absolute bottom-3 right-4 text-[10px] text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded border border-white/10">
+                Imagens ilustrativas
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Comparison Cards (Without asserting exact m3 numbers!) */}
+        {/* Comparison Cards (Without claiming exact m3 numbers or unconfirmed labels) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {needs.map((item) => (
             <div
               key={item.title}
               className={`rounded-2xl p-7 flex flex-col justify-between transition-all duration-300 relative border ${
                 item.highlighted
-                  ? 'border-[#0D2340] bg-slate-50/80 shadow-lg ring-1 ring-[#0D2340]'
+                  ? 'border-[#0D2340] bg-slate-50/80 shadow-md ring-1 ring-[#0D2340]'
                   : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-md'
               }`}
             >
-              {item.highlighted && (
-                <div className="absolute -top-3 left-6 bg-[#0D2340] text-[#DE722B] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
-                  Mais Solicitado
-                </div>
-              )}
-
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#DE722B] block mb-1">
                   {item.badge}
@@ -196,7 +186,7 @@ export const VolumeGuideSection: React.FC = () => {
         </div>
 
         <div className="mt-10 text-center text-xs text-slate-500">
-          Nota: O dimensionamento exato é alinhado com o cliente no ato do pedido conforme a legislação e espaço disponível.
+          Nota: O dimensionamento é orientado no momento do pedido de acordo com o espaço e as normas do município.
         </div>
       </div>
     </section>

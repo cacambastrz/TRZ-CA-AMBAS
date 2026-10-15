@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
-import { WhatsAppBudgetHelper } from './components/WhatsAppBudgetHelper.tsx';
 import { ServicesSection } from './components/ServicesSection.tsx';
 import { VolumeGuideSection } from './components/VolumeGuideSection.tsx';
 import { HowItWorksSection } from './components/HowItWorksSection.tsx';
@@ -24,47 +23,42 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-[#DE722B] selection:text-white">
-      {/* 1. Header (Clean white top bar, 3-zone contract) */}
+      {/* 1. Top Bar Contract (Clean white navbar with 3 zones) */}
       <Navbar />
 
       <main className="flex-grow">
-        {/* 2. Hero Section (Photo first on mobile, strong typography, navy field with rhombus details) */}
+        {/* 2. Hero Section (Photo first on mobile, strong typography, navy background, direct 1-click WhatsApp CTA) */}
         <Hero />
 
-        {/* 3. Interactive Contextual Request Helper */}
-        <section className="px-4 sm:px-6 lg:px-8 mb-16">
-          <WhatsAppBudgetHelper />
-        </section>
-
-        {/* 4. Services Section (Reformas, Construção, Demolição) */}
+        {/* 3. Services Section (Reformas, Construção Civil, Demolição com CTAs diretos) */}
         <ServicesSection />
 
-        {/* 5. Visual Needs Guide (Pequena reforma / Obra residencial / Maior volume sem capacidades fixas) */}
+        {/* 4. Visual Needs Guide (Pequena reforma, obra residencial, maior volume sem capacidades numéricas fixas) */}
         <VolumeGuideSection />
 
-        {/* 6. How it works (3 passos simples) */}
+        {/* 5. How It Works (3 passos ágeis direto para WhatsApp) */}
         <HowItWorksSection />
 
-        {/* 7. Materials & Safety Rules (Concreto, Proibidos, Triagem madeira/gesso, Borda, Acesso) */}
+        {/* 6. Materials & Safety Rules (Concreto/alvenaria, perigosos proibidos, triagem madeira/gesso, limite borda, acesso) */}
         <MaterialsAndSafetySection />
 
-        {/* 8. About TRZ Caçambas (Without fabricated credentials) */}
+        {/* 7. About TRZ Caçambas (Dados oficiais: CNPJ 02.790.033/0001-08, Sede em SP e Atendimento Nacional via filiais/parceiros) */}
         <AboutSection />
 
-        {/* 9. FAQ Section */}
+        {/* 8. FAQ Section (Dúvidas frequentes sobre cidades, sede, descarte e regras) */}
         <FaqSection />
 
-        {/* 10. Direct Contact Section */}
+        {/* 9. Direct Contact Section (Telefone +55 (35) 9994-3426, CNPJ, Sede e botão WhatsApp direto) */}
         <ContactSection />
       </main>
 
-      {/* 11. Footer */}
+      {/* 10. Footer (Identificação corporativa, CNPJ, Sede, atendimento nacional e links legais) */}
       <Footer onOpenPrivacy={handleOpenPrivacy} />
 
-      {/* 12. Floating WhatsApp and Discreet Mobile Sticky Bar */}
+      {/* 11. Floating WhatsApp and Discreet Mobile Sticky Bar */}
       <FloatingWhatsApp />
 
-      {/* 13. Accessible Privacy & Terms Modal */}
+      {/* 12. Accessible Privacy & Terms Modal */}
       <PrivacyModal
         isOpen={privacyModalOpen}
         onClose={() => setPrivacyModalOpen(false)}

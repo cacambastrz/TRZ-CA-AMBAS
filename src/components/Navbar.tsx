@@ -10,8 +10,8 @@ export const Navbar: React.FC = () => {
     { label: 'Serviços', href: '#servicos' },
     { label: 'Guia de Obra', href: '#guia' },
     { label: 'Como Alugar', href: '#como-alugar' },
-    { label: 'Regras & Acesso', href: '#materiais' },
-    { label: 'Dúvidas', href: '#faq' },
+    { label: 'Regras', href: '#materiais' },
+    { label: 'Empresa', href: '#empresa' },
   ];
 
   return (

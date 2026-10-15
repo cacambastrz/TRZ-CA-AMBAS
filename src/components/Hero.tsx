@@ -1,14 +1,12 @@
 import React from 'react';
-import { MessageCircle, ArrowRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
-import { getWhatsAppUrl, WHATSAPP_DISPLAY_PHONE } from '../utils/whatsapp.ts';
-
-// Main image asset with fallback
-import heroImageTruck from '../assets/images/hero_dumpster_truck_1792080195909.jpg';
+import { MessageCircle, ArrowRight, ShieldCheck, Clock, Globe2 } from 'lucide-react';
+import { getWhatsAppUrl, WHATSAPP_DISPLAY_PHONE, COMPANY_CNPJ } from '../utils/whatsapp.ts';
+import { TRZ_ASSETS } from '../utils/assets.ts';
 
 export const Hero: React.FC = () => {
   return (
     <section className="relative bg-[#0D2340] text-white overflow-hidden">
-      {/* Subtle Geometric Rhombus Accent Graphics in the Navy Field */}
+      {/* Geometric Rhombus Accent Details */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
         <div className="absolute -top-24 -right-24 w-96 h-96 border-2 border-white transform rotate-45" />
         <div className="absolute top-1/2 -right-12 w-64 h-64 border border-[#DE722B] transform rotate-45" />
@@ -19,47 +17,41 @@ export const Hero: React.FC = () => {
         {/*
           Mobile Rule: "Mobile: foto aparece logo abaixo do cabeçalho, antes do texto."
           Implementation:
-          On mobile (< lg), we use flex-col-reverse with the image placed first in visual order:
-          Using flex-col lg:flex-row with ordering:
-          - Image container has order-1 lg:order-2
-          - Text container has order-2 lg:order-1
+          - Image container: order-1 lg:order-2
+          - Text container: order-2 lg:order-1
         */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
           
           {/* MOBILE ORDER 1 / DESKTOP ORDER 2: HERO PHOTOGRAPHY */}
           <div className="w-full lg:w-1/2 order-1 lg:order-2">
             <div className="relative group">
-              {/* Decorative Geometric Orange Rhombus Corner Accent */}
+              {/* Decorative Geometric Rhombus Accent Corners */}
               <div className="absolute -top-3 -right-3 w-8 h-8 bg-[#DE722B] transform rotate-45 z-20 shadow-lg hidden sm:block" />
               <div className="absolute -bottom-3 -left-3 w-8 h-8 bg-[#DE722B] transform rotate-45 z-20 shadow-lg hidden sm:block" />
 
-              {/* Main Image Container */}
-              <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-slate-900/40 aspect-[16/10] sm:aspect-[16/10] lg:aspect-[4/3]">
+              {/* Main Image Container with Truck */}
+              <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-gradient-to-br from-slate-900/60 to-[#071526] p-2 sm:p-4 aspect-[16/11] sm:aspect-[16/10] lg:aspect-[4/3] flex items-center justify-center">
                 <img
-                  src={heroImageTruck}
-                  alt="Caminhão poliguindaste e caçamba estacionária para entulho de obra"
-                  className="w-full h-full object-cover object-center transform group-hover:scale-102 transition-transform duration-500"
+                  src={TRZ_ASSETS.caminhao}
+                  alt="Caminhão TRZ Caçambas para transporte de entulho"
+                  className="w-full h-full object-contain object-center transform group-hover:scale-103 transition-transform duration-500 drop-shadow-2xl"
                   referrerPolicy="no-referrer"
                   loading="eager"
-                  onError={(e) => {
-                    // Fallback to public asset if needed
-                    const target = e.currentTarget;
-                    if (target.src !== '/assets/hero-caminhao.jpg') {
-                      target.src = '/assets/hero-caminhao.jpg';
-                    }
-                  }}
                 />
-                {/* Subtle gradient overlay to merge with navy background */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0D2340]/80 via-transparent to-transparent pointer-events-none" />
 
-                {/* Quiet live floating card inside photo */}
-                <div className="absolute bottom-4 left-4 right-4 sm:right-auto bg-[#0D2340]/90 backdrop-blur-md border border-white/15 px-4 py-3 rounded-lg text-xs flex items-center gap-3 shadow-lg">
+                {/* Floating pill inside photo */}
+                <div className="absolute bottom-4 left-4 right-4 sm:right-auto bg-[#0D2340]/90 backdrop-blur-md border border-white/15 px-4 py-2.5 rounded-lg text-xs flex items-center gap-3 shadow-lg">
                   <div className="w-3 h-3 bg-[#DE722B] transform rotate-45 shrink-0" />
                   <div>
-                    <span className="font-bold text-white block">Atendimento Ágil</span>
-                    <span className="text-slate-300 text-[11px]">Entrega e coleta programadas</span>
+                    <span className="font-bold text-white block">Atendimento em Todo o Brasil</span>
+                    <span className="text-slate-300 text-[11px]">Filiais e empresas parceiras por cidade</span>
                   </div>
                 </div>
+
+                {/* Discrete illustrative note */}
+                <span className="absolute top-3 right-4 text-[10px] text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded border border-white/10">
+                  Imagens ilustrativas
+                </span>
               </div>
             </div>
           </div>
@@ -68,9 +60,9 @@ export const Hero: React.FC = () => {
           <div className="w-full lg:w-1/2 order-2 lg:order-1 flex flex-col justify-center text-left">
             {/* Unboxed Kicker with Diamond separator */}
             <div className="flex items-center gap-2 text-xs font-bold text-[#DE722B] tracking-wider uppercase mb-4">
-              <span>Locação de Caçambas</span>
+              <span>TRZ Caçambas</span>
               <span className="w-1.5 h-1.5 bg-[#DE722B] transform rotate-45 inline-block" />
-              <span>Obras & Reformas</span>
+              <span>Locação para Obras & Reformas</span>
             </div>
 
             {/* Main Headline */}
@@ -84,28 +76,28 @@ export const Hero: React.FC = () => {
             {/* Value Proposition Description */}
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal mb-6 max-w-xl">
               Locação ágil de caçambas estacionárias para reformas, construções e demolições.
-              Mantenha sua obra limpa, segura e dentro das normas com transporte e descarte responsável.
+              Atendimento em todo o Brasil através de filiais e empresas parceiras, com disponibilidade confirmada por cidade diretamente no WhatsApp.
             </p>
 
-            {/* Clear Regional Availability & Pricing Rule */}
+            {/* National Coverage Strip */}
             <div className="mb-8 p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#DE722B] shrink-0 mt-0.5" />
+                <Globe2 className="w-5 h-5 text-[#DE722B] shrink-0 mt-0.5" />
                 <div className="text-xs sm:text-sm text-slate-200">
                   <strong className="text-white block font-semibold mb-0.5">
-                    Consulte disponibilidade para sua cidade no WhatsApp
+                    Atendimento em todo o Brasil — Consulte sua cidade no WhatsApp
                   </strong>
                   <span className="text-slate-300 text-xs">
-                    Orçamento calculado sob medida conforme cidade, tipo de material, volume e período de locação.
+                    Sede corporativa em São Paulo/SP com operação e entrega rápida via filiais e empresas parceiras em diversas regiões.
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Primary Action Buttons */}
+            {/* Primary 1-Click WhatsApp Action */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8">
               <a
-                href={getWhatsAppUrl('Olá, TRZ Caçambas! Gostaria de consultar um orçamento para locação de caçamba na minha cidade.')}
+                href={getWhatsAppUrl('Olá, TRZ Caçambas! Gostaria de consultar a disponibilidade e solicitar orçamento para locação de caçamba na minha cidade.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white bg-[#DE722B] hover:bg-[#C55E1C] active:scale-[0.98] rounded-lg shadow-lg hover:shadow-orange-500/20 transition-all duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -116,10 +108,10 @@ export const Hero: React.FC = () => {
               </a>
 
               <a
-                href="#guia"
+                href="#servicos"
                 className="inline-flex items-center justify-center gap-2 px-5 py-4 text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg border border-white/15 transition-colors whitespace-nowrap"
               >
-                <span>Ver Guia de Obra</span>
+                <span>Conhecer Serviços</span>
               </a>
             </div>
 
@@ -132,7 +124,7 @@ export const Hero: React.FC = () => {
               <span className="text-white/30">·</span>
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#DE722B]" />
-                <span>Descarte responsável</span>
+                <span>CNPJ: {COMPANY_CNPJ}</span>
               </div>
               <span className="text-white/30">·</span>
               <div className="flex items-center gap-1.5">

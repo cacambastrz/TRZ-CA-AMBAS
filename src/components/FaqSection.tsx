@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronDown, MessageCircle, HelpCircle } from 'lucide-react';
-import { getWhatsAppUrl } from '../utils/whatsapp.ts';
+import { ChevronDown, MessageCircle } from 'lucide-react';
+import { getWhatsAppUrl, COMPANY_CNPJ, COMPANY_ADDRESS } from '../utils/whatsapp.ts';
 
 interface FaqItem {
   question: string;
@@ -12,39 +12,44 @@ export const FaqSection: React.FC = () => {
 
   const faqs: FaqItem[] = [
     {
-      question: 'Como é calculado o orçamento da locação?',
-      answer:
-        'O valor da locação é calculado sob medida conforme a sua cidade, o tipo de material que será descartado (alvenaria, madeira, etc.), o volume estimado de entulho e o período de permanência da caçamba no local.',
-    },
-    {
       question: 'Quais cidades a TRZ Caçambas atende?',
       answer:
-        'Consulte a disponibilidade para sua cidade diretamente no WhatsApp. Basta nos enviar uma mensagem com o endereço ou bairro da sua obra para confirmarmos a rota e os prazos de entrega.',
+        'A TRZ Caçambas possui atuação em todo o Brasil através de suas filiais e ampla rede de parceiros homologados. A disponibilidade e a rota de entrega para sua localidade são confirmadas diretamente no WhatsApp em poucos minutos.',
+    },
+    {
+      question: 'Onde fica a sede da TRZ Caçambas?',
+      answer:
+        `Nossa sede administrativa está localizada em São Paulo: ${COMPANY_ADDRESS.full}, sob o CNPJ ${COMPANY_CNPJ}. A partir dessa base corporativa, coordenamos operações com filiais e parceiros por todo o território nacional.`,
+    },
+    {
+      question: 'Como é calculado o orçamento da locação?',
+      answer:
+        'O orçamento é personalizado e transparente, calculado conforme a sua cidade, o tipo de material a ser descartado (alvenaria, madeira, etc.), o volume estimado e o período de permanência da caçamba no local.',
     },
     {
       question: 'Posso encher a caçamba acima da borda?',
       answer:
-        'Não. Por determinação estrita do Código de Trânsito Brasileiro e normas de segurança, o entulho deve ficar rigorosamente alinhado à borda da caçamba. Caçambas com materiais transbordando oferecem risco grave de queda durante o transporte rodoviário e não podem ser içadas pelo caminhão.',
+        'Não. Por determinação do Código de Trânsito Brasileiro e normas de segurança, o entulho deve ficar estritamente no limite da borda de aço. Caçambas sobrecarregadas oferecem risco de desprendimento na via pública e não podem ser transportadas pelo caminhão até serem niveladas.',
     },
     {
       question: 'Quais materiais são proibidos na caçamba comum?',
       answer:
-        'Não é permitido o descarte de materiais perigosos ou contaminantes, como telhas e caixas d’água de amianto, restos de tintas, solventes, óleos, produtos químicos em geral, lixo hospitalar ou lixo doméstico orgânico. Esses materiais exigem logística reversa e descarte especializado.',
+        'Não é permitido o descarte de materiais tóxicos ou perigosos, como telhas e caixas d’água de amianto, restos de tintas, solventes, óleos, produtos químicos em geral, lixo hospitalar ou lixo doméstico orgânico. Esses materiais exigem tratamento e descarte ambiental específico.',
     },
     {
       question: 'Madeira e gesso podem ser colocados na caçamba?',
       answer:
-        'Madeira e gesso exigem triagem e destinação separada. Por isso, confirme previamente no WhatsApp se a sua obra envolverá esses materiais para que possamos orientar a forma correta de separação e descarte.',
+        'Madeira e gesso exigem triagem e destinação separada. Avise nossa equipe previamente no WhatsApp caso sua obra envolva esses itens para que possamos orientar a correta separação e descarte.',
     },
     {
       question: 'Como funciona a retirada ou prorrogação do período?',
       answer:
-        'Caso sua obra termine antes do prazo ou você precise estender a permanência, basta enviar uma mensagem no WhatsApp. Nossa equipe programa a retirada ou a troca por uma caçamba vazia com total praticidade.',
+        'Caso sua obra termine antes do prazo ou você precise estender a permanência, basta enviar uma mensagem no WhatsApp. Nossa equipe programa a retirada ou a troca por uma caçamba vazia com agilidade.',
     },
     {
       question: 'Onde a caçamba deve ser posicionada?',
       answer:
-        'A caçamba deve ser colocada em local de fácil acesso para o caminhão poliguindaste, com terreno nivelado e firme, sem obstruir passagens de pedestres, garagens de vizinhos ou faixas de pedestres, e distante de galhos baixos e fiação elétrica.',
+        'A caçamba deve ser colocada em local de fácil acesso para o caminhão poliguindaste, com terreno nivelado e firme, sem obstruir passagens de pedestres, garagens de vizinhos e longe de galhos baixos e fiação elétrica.',
     },
   ];
 
@@ -66,7 +71,7 @@ export const FaqSection: React.FC = () => {
             Perguntas Frequentes
           </h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Respostas práticas e transparentes sobre prazos, regras de descarte e condições de locação.
+            Respostas práticas sobre atendimento nacional, prazos, regras de descarte e condições de locação.
           </p>
         </div>
 
@@ -110,17 +115,17 @@ export const FaqSection: React.FC = () => {
         {/* Help prompt */}
         <div className="mt-12 p-6 rounded-2xl bg-slate-100/80 border border-slate-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
-            <span className="text-sm font-bold text-slate-900 block">Ainda tem alguma dúvida sobre sua obra?</span>
-            <span className="text-xs text-slate-500">Nossa equipe atende rapidamente pelo WhatsApp.</span>
+            <span className="text-sm font-bold text-slate-900 block">Precisa de atendimento para sua cidade?</span>
+            <span className="text-xs text-slate-500">Nossa equipe confirma disponibilidade e prazos diretamente no WhatsApp.</span>
           </div>
           <a
-            href={getWhatsAppUrl('Olá! Tenho uma dúvida sobre a locação de caçamba para minha obra.')}
+            href={getWhatsAppUrl('Olá! Tenho uma dúvida sobre a locação de caçamba para minha cidade.')}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#0D2340] hover:bg-[#DE722B] rounded-lg transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#0D2340] hover:bg-[#DE722B] rounded-lg transition-colors whitespace-nowrap cursor-pointer"
           >
             <MessageCircle className="w-4 h-4 text-[#DE722B]" />
-            <span>Tirar Dúvida no WhatsApp</span>
+            <span>Falar no WhatsApp</span>
           </a>
         </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Logo } from './Logo.tsx';
-import { MessageCircle, Phone, ArrowUpRight, ShieldCheck } from 'lucide-react';
-import { getWhatsAppUrl, WHATSAPP_DISPLAY_PHONE } from '../utils/whatsapp.ts';
+import { MessageCircle, Phone, ArrowUpRight, MapPin, Building2, Globe2 } from 'lucide-react';
+import { getWhatsAppUrl, WHATSAPP_DISPLAY_PHONE, COMPANY_CNPJ, COMPANY_ADDRESS } from '../utils/whatsapp.ts';
 
 interface FooterProps {
   onOpenPrivacy: (tab: 'privacidade' | 'termos') => void;
@@ -15,18 +15,31 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
           
-          {/* Brand Info */}
+          {/* Brand & Corporate Identification */}
           <div className="lg:col-span-5 space-y-4">
             <Logo variant="light" />
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm mt-3">
               Locação de caçambas estacionárias para entulho de obras, reformas e demolições.
-              Compromisso com a agilidade, segurança no trânsito e destinação ambientalmente responsável.
+              Compromisso com a agilidade na entrega, segurança viária e destinação ambientalmente adequada.
             </p>
-            <div className="pt-2">
-              <span className="text-xs text-slate-400 block mb-1">Cidades Atendidas:</span>
-              <p className="text-xs font-semibold text-[#DE722B]">
-                Consulte disponibilidade para sua cidade no WhatsApp.
-              </p>
+
+            {/* Official Data */}
+            <div className="space-y-2 pt-2 text-xs text-slate-300">
+              <div className="flex items-start gap-2">
+                <Building2 className="w-4 h-4 text-[#DE722B] shrink-0 mt-0.5" />
+                <span>CNPJ: <strong className="font-mono text-white">{COMPANY_CNPJ}</strong></span>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-[#DE722B] shrink-0 mt-0.5" />
+                <span>Sede: {COMPANY_ADDRESS.full}</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Globe2 className="w-4 h-4 text-[#DE722B] shrink-0 mt-0.5" />
+                <span className="text-slate-300">
+                  <strong className="text-white">Atendimento em todo o Brasil</strong> através de filiais e rede parceira homologada.
+                  Disponibilidade confirmada por cidade diretamente no WhatsApp.
+                </span>
+              </div>
             </div>
           </div>
 
@@ -57,6 +70,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
                 </a>
               </li>
               <li>
+                <a href="#empresa" className="hover:text-[#DE722B] transition-colors">
+                  Dados da Empresa (CNPJ & Sede)
+                </a>
+              </li>
+              <li>
                 <a href="#faq" className="hover:text-[#DE722B] transition-colors">
                   Perguntas Frequentes
                 </a>
@@ -64,13 +82,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
             </ul>
           </div>
 
-          {/* Direct Contact */}
+          {/* Direct Contact & Conversions */}
           <div className="lg:col-span-4 space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-white block">
               Atendimento e Orçamento
             </span>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Solicite valores e tire dúvidas diretamente com nossa equipe:
+              Consulte a disponibilidade de caçambas para a sua cidade com nossa equipe:
             </p>
 
             <div className="space-y-2 pt-1">
@@ -95,13 +113,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
 
             <div className="pt-2">
               <a
-                href={getWhatsAppUrl('Olá! Gostaria de alugar uma caçamba com a TRZ.')}
+                href={getWhatsAppUrl('Olá! Gostaria de alugar uma caçamba com a TRZ Caçambas.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#DE722B] hover:bg-[#C55E1C] rounded-lg transition-colors shadow-sm"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Chamar no WhatsApp</span>
+                <span>Pedir Caçamba no WhatsApp</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -112,7 +130,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
         {/* Legal & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            © {new Date().getFullYear()} TRZ Caçambas. Todos os direitos reservados.
+            © {new Date().getFullYear()} TRZ Caçambas · CNPJ: {COMPANY_CNPJ}. Todos os direitos reservados.
           </div>
 
           <div className="flex items-center gap-6">

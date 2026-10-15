@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { X, ShieldCheck, FileText, CheckCircle2 } from 'lucide-react';
-import { WHATSAPP_DISPLAY_PHONE } from '../utils/whatsapp.ts';
+import { X, ShieldCheck, FileText, Building2, MapPin } from 'lucide-react';
+import { WHATSAPP_DISPLAY_PHONE, COMPANY_CNPJ, COMPANY_ADDRESS, COMPANY_NAME } from '../utils/whatsapp.ts';
 
 interface PrivacyModalProps {
   isOpen: boolean;
@@ -97,6 +97,21 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({
 
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-6 text-sm text-slate-600 leading-relaxed">
+          {/* Corporate Identification Header */}
+          <div className="p-4 rounded-xl bg-slate-100/70 border border-slate-200 space-y-1.5 text-xs text-slate-700">
+            <div className="flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-[#DE722B]" />
+              <span><strong>Empresa:</strong> {COMPANY_NAME} · CNPJ: <strong className="font-mono">{COMPANY_CNPJ}</strong></span>
+            </div>
+            <div className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-[#DE722B] shrink-0 mt-0.5" />
+              <span><strong>Sede:</strong> {COMPANY_ADDRESS.full}</span>
+            </div>
+            <div className="text-[11px] text-slate-500 pt-1">
+              Operação e atendimento em todo o Brasil através de filiais e parceiros homologados.
+            </div>
+          </div>
+
           {activeTab === 'privacidade' ? (
             <div className="space-y-4">
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
@@ -109,19 +124,19 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">1. Tratamento de Informações</h3>
                 <p>
-                  As interações de orçamento ocorrem exclusivamente pelo aplicativo WhatsApp. Os dados fornecidos pelo cliente (como endereço da obra, tipo de resíduo e período) são utilizados estritamente para a viabilização logística da entrega e retirada das caçambas.
+                  As interações de orçamento ocorrem diretamente pelo canal oficial do WhatsApp. Os dados fornecidos pelo cliente (como endereço da obra, tipo de resíduo e período) são utilizados estritamente para viabilizar a cotação, entrega e retirada das caçambas.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-bold text-slate-900 mb-1">2. Não Compartilhamento</h3>
+                <h3 className="font-bold text-slate-900 mb-1">2. Não Compartilhamento Comercial</h3>
                 <p>
                   A TRZ Caçambas não comercializa, não aluga e não repassa informações de contato a terceiros para fins de marketing ou disparos em massa.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-bold text-slate-900 mb-1">3. Seus Direitos</h3>
+                <h3 className="font-bold text-slate-900 mb-1">3. Seus Direitos (LGPD)</h3>
                 <p>
                   Em conformidade com a LGPD (Lei Geral de Proteção de Dados - Lei nº 13.709/2018), você pode a qualquer momento solicitar esclarecimentos ou exclusão de seu histórico de atendimento enviando uma mensagem para o nosso canal de suporte: <strong>{WHATSAPP_DISPLAY_PHONE}</strong>.
                 </p>
@@ -132,7 +147,7 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
                 <FileText className="w-5 h-5 text-[#DE722B] shrink-0 mt-0.5" />
                 <p className="text-xs text-slate-700 font-medium">
-                  Regras essenciais para garantir a segurança viária, conformidade legal e integridade física de todos durante a locação.
+                  Regras operacionais para garantir a segurança no trânsito, a conformidade legal e a integridade de todos durante a locação.
                 </p>
               </div>
 
@@ -153,14 +168,14 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">3. Acesso e Posicionamento</h3>
                 <p>
-                  O contratante deve certificar-se de que o local de estacionamento possui espaço livre para manobra do caminhão poliguindaste e não possui cabos aéreos baixos ou restrições que impeçam o içamento.
+                  O contratante deve certificar-se de que o local de estacionamento possui espaço livre para manobra do caminhão poliguindaste e não possui cabos aéreos baixos ou restrições que impeçam o içamento seguro.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">4. Prazos e Retiradas</h3>
                 <p>
-                  O período de permanência é combinado previamente. Caso necessite de retirada antecipada ou prorrogação, avise nossa equipe com antecedência para alinhamento da rota.
+                  O período de permanência é combinado previamente. Caso necessite de retirada antecipada ou prorrogação, avise nossa equipe com antecedência pelo WhatsApp.
                 </p>
               </div>
             </div>
