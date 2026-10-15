@@ -47,11 +47,6 @@ export const Hero: React.FC = () => {
                     <span className="text-slate-300 text-[11px]">Filiais e empresas parceiras por cidade</span>
                   </div>
                 </div>
-
-                {/* Discrete illustrative note */}
-                <span className="absolute top-3 right-4 text-[10px] text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded border border-white/10">
-                  Imagens ilustrativas
-                </span>
               </div>
             </div>
           </div>

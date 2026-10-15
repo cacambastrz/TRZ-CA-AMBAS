@@ -107,9 +107,6 @@ export const AboutSection: React.FC = () => {
               <span className="text-[11px] text-slate-400 mt-1 block">
                 Segurança para a via pública e facilidade para a sua equipe
               </span>
-              <span className="text-[10px] text-slate-500 mt-2">
-                (Imagens ilustrativas)
-              </span>
             </div>
           </div>
 

@@ -118,9 +118,6 @@ export const VolumeGuideSection: React.FC = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer"
               />
-              <span className="absolute bottom-3 right-4 text-[10px] text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded border border-white/10">
-                Imagens ilustrativas
-              </span>
             </div>
           </div>
         </div>
@@ -145,9 +142,6 @@ export const VolumeGuideSection: React.FC = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer"
                 />
-                <span className="absolute bottom-2 right-3 text-[10px] text-slate-300 bg-slate-900/85 px-2 py-0.5 rounded border border-white/10">
-                  Imagem ilustrativa
-                </span>
               </div>
 
               {/* Card Body */}

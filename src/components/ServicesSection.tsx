@@ -88,9 +88,6 @@ export const ServicesSection: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-[#0D2340]/90 backdrop-blur-sm border border-white/10 px-2.5 py-1 rounded text-[11px] font-mono font-bold text-[#DE722B]">
                     {svc.number}.
                   </div>
-                  <span className="absolute bottom-2 right-3 text-[10px] text-slate-400 bg-slate-900/70 px-1.5 py-0.5 rounded">
-                    Ilustrativa
-                  </span>
                 </div>
 
                 {/* Card Content */}
