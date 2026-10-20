@@ -1,5 +1,5 @@
 import React from 'react';
-import { getWhatsAppUrl, WHATSAPP_DISPLAY_PHONE } from '../utils/whatsapp.ts';
+import { getWhatsAppUrl } from '../utils/whatsapp.ts';
 import { WhatsAppIcon } from './WhatsAppIcon.tsx';
 
 export const FloatingWhatsApp: React.FC = () => {
@@ -38,8 +38,8 @@ export const FloatingWhatsApp: React.FC = () => {
           <span className="text-[10px] uppercase font-bold tracking-wider text-[#DE722B] truncate">
             TRZ Caçambas
           </span>
-          <span className="text-xs font-mono font-bold text-white truncate">
-            {WHATSAPP_DISPLAY_PHONE}
+          <span className="text-xs font-semibold text-slate-200 truncate">
+            Orçamento Online
           </span>
         </div>
 

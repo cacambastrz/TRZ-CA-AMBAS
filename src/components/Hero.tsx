@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageCircle, ArrowRight, ShieldCheck, Clock, Globe2 } from 'lucide-react';
-import { getWhatsAppUrl, WHATSAPP_DISPLAY_PHONE, COMPANY_CNPJ } from '../utils/whatsapp.ts';
+import { getWhatsAppUrl, COMPANY_CNPJ } from '../utils/whatsapp.ts';
 import { TRZ_ASSETS } from '../utils/assets.ts';
 
 export const Hero: React.FC = () => {
@@ -123,8 +123,8 @@ export const Hero: React.FC = () => {
               </div>
               <span className="text-white/30">·</span>
               <div className="flex items-center gap-1.5">
-                <span className="text-[#DE722B] font-bold">Tel:</span>
-                <span className="text-white font-medium">{WHATSAPP_DISPLAY_PHONE}</span>
+                <span className="text-[#DE722B] font-bold">Atendimento:</span>
+                <span className="text-white font-medium">Via WhatsApp</span>
               </div>
             </div>
 

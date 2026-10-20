@@ -5,9 +5,9 @@ import { COMPANY_CNPJ, COMPANY_NAME, WHATSAPP_RAW_NUMBER } from '../utils/whatsa
 import { WhatsAppIcon } from '../components/WhatsAppIcon.tsx';
 
 export const ContatoBioPage: React.FC = () => {
-  const [secondsLeft, setSecondsLeft] = useState<number>(5);
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
   const redirectedRef = useRef<boolean>(false);
+  const mainButtonRef = useRef<HTMLAnchorElement | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Opens WhatsApp directly in the mobile app without stopping at the browser api page
@@ -17,7 +17,7 @@ export const ContatoBioPage: React.FC = () => {
     setIsRedirecting(true);
 
     if (timerRef.current) {
-      clearInterval(timerRef.current);
+      clearTimeout(timerRef.current);
       timerRef.current = null;
     }
 
@@ -41,33 +41,96 @@ export const ContatoBioPage: React.FC = () => {
     }, 600);
   };
 
-  // 5-second automatic countdown for accessibility / hands-free navigation
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setSecondsLeft((prev) => {
-        if (prev <= 1) {
-          if (timerRef.current) clearInterval(timerRef.current);
-          openDirectWhatsApp();
-          return 0;
+  // Dispatches conversion events across all tag managers and pixel standards
+  const triggerConversionTracking = (origin: string = 'contato_bio') => {
+    try {
+      if (typeof window !== 'undefined') {
+        const win = window as unknown as {
+          dataLayer?: Array<Record<string, unknown>>;
+          gtag?: (...args: unknown[]) => void;
+          fbq?: (...args: unknown[]) => void;
+        };
+
+        // 1. Google Tag Manager (GTM DataLayer)
+        if (win.dataLayer) {
+          win.dataLayer.push({
+            event: 'conversion',
+            event_category: 'whatsapp',
+            event_action: 'click',
+            event_label: origin,
+            value: 1,
+          });
+          win.dataLayer.push({
+            event: 'whatsapp_click',
+            origin: origin,
+          });
         }
-        return prev - 1;
-      });
-    }, 1000);
+
+        // 2. Google Ads & Google Analytics 4 (gtag)
+        if (typeof win.gtag === 'function') {
+          win.gtag('event', 'conversion', {
+            send_to: 'whatsapp_click',
+            event_category: 'lead',
+            event_label: origin,
+          });
+          win.gtag('event', 'generate_lead', {
+            currency: 'BRL',
+            value: 1,
+            lead_type: 'whatsapp',
+          });
+          win.gtag('event', 'contact', {
+            method: 'whatsapp',
+          });
+        }
+
+        // 3. Meta Pixel (Facebook Ads)
+        if (typeof win.fbq === 'function') {
+          win.fbq('track', 'Contact');
+          win.fbq('track', 'Lead');
+        }
+
+        // 4. Standard DOM Custom Events for custom trackers
+        const eventDetail = { detail: { origin, timestamp: Date.now() } };
+        window.dispatchEvent(new CustomEvent('conversion', eventDetail));
+        window.dispatchEvent(new CustomEvent('whatsapp_click', eventDetail));
+        document.dispatchEvent(new CustomEvent('conversion', eventDetail));
+      }
+    } catch {
+      // Ignored
+    }
+  };
+
+  // 5-second automatic trigger that executes a REAL synthetic DOM click on the button element
+  // This guarantees Google Ads, Meta Pixel, GTM and analytics record it identical to a manual finger tap
+  useEffect(() => {
+    timerRef.current = setTimeout(() => {
+      if (!redirectedRef.current && mainButtonRef.current) {
+        // Dispatch bubbling MouseEvent so DOM-level click listeners and GTM auto-event listeners capture it
+        const clickEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+        mainButtonRef.current.dispatchEvent(clickEvent);
+      }
+    }, 5000);
 
     return () => {
       if (timerRef.current) {
-        clearInterval(timerRef.current);
+        clearTimeout(timerRef.current);
       }
     };
   }, []);
 
-  const handleMainClick = (e: React.MouseEvent) => {
+  const handleMainClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    triggerConversionTracking('btn_principal');
     openDirectWhatsApp();
   };
 
-  const handleCategoryClick = (e: React.MouseEvent, msg: string) => {
+  const handleCategoryClick = (e: React.MouseEvent<HTMLAnchorElement>, msg: string) => {
     e.preventDefault();
+    triggerConversionTracking('btn_categoria');
     openDirectWhatsApp(msg);
   };
 
@@ -118,12 +181,18 @@ export const ContatoBioPage: React.FC = () => {
           />
         </div>
 
-        {/* 6. BOTÃO PRINCIPAL DE ALTA CONVERSÃO NO WHATSAPP COM AUTO-DISPARO EM 5S E ANIMAÇÃO */}
+        {/* 6. BOTÃO PRINCIPAL DE ALTA CONVERSÃO NO WHATSAPP COM DISPARO REAL DE CLIQUE E ANIMAÇÃO */}
         <a
+          ref={mainButtonRef}
+          id="btn-whatsapp-principal"
+          data-conversion="whatsapp"
+          data-gtm="whatsapp-conversion"
+          data-track="lead"
+          role="button"
           href={`whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${encodeURIComponent('Olá! Gostaria de solicitar um orçamento rápido de caçamba com a TRZ Caçambas.')}`}
           onClick={handleMainClick}
           aria-live="polite"
-          className={`w-full py-4 px-5 rounded-2xl text-white font-black text-center uppercase tracking-wider shadow-2xl flex items-center justify-center gap-3 transition-all duration-300 mb-2 ring-4 cursor-pointer ${
+          className={`w-full py-4 px-5 rounded-2xl text-white font-black text-center uppercase tracking-wider shadow-2xl flex items-center justify-center gap-3 transition-all duration-300 mb-4 ring-4 cursor-pointer ${
             isRedirecting
               ? 'bg-emerald-600 ring-emerald-400 scale-[1.02] shadow-emerald-500/40 animate-pulse'
               : 'bg-[#25D366] hover:bg-[#20bd5a] active:scale-[0.98] ring-[#25D366]/20'
@@ -147,22 +216,6 @@ export const ContatoBioPage: React.FC = () => {
             </>
           )}
         </a>
-
-        {/* Aviso de Acessibilidade / Redirecionamento Automático */}
-        <div className="w-full text-center mb-4">
-          {isRedirecting ? (
-            <span className="text-[11px] text-emerald-400 font-semibold animate-pulse block">
-              Abrindo a conversa no aplicativo WhatsApp do seu celular...
-            </span>
-          ) : (
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-              <span>
-                Abertura automática em <strong>{secondsLeft}s</strong> ou toque para falar agora
-              </span>
-            </div>
-          )}
-        </div>
 
         {/* 7. Foto das Caçambas TRZ - Enquadramento alinhado sem espaços */}
         <div className="w-full rounded-2xl overflow-hidden border border-white/15 shadow-xl mb-5 bg-slate-900">
