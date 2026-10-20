@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Zap, MapPin, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { TRZ_ASSETS } from '../utils/assets.ts';
-import { COMPANY_CNPJ, COMPANY_NAME, WHATSAPP_RAW_NUMBER } from '../utils/whatsapp.ts';
+import { COMPANY_CNPJ, COMPANY_NAME, getWhatsAppUrl } from '../utils/whatsapp.ts';
 import { WhatsAppIcon } from '../components/WhatsAppIcon.tsx';
 
 export const ContatoBioPage: React.FC = () => {
@@ -10,7 +10,7 @@ export const ContatoBioPage: React.FC = () => {
   const mainButtonRef = useRef<HTMLAnchorElement | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Opens WhatsApp directly in the mobile app without stopping at the browser api page
+  // Opens WhatsApp directly via official wa.me universal link
   const openDirectWhatsApp = (customMessage?: string) => {
     if (redirectedRef.current) return;
     redirectedRef.current = true;
@@ -22,22 +22,12 @@ export const ContatoBioPage: React.FC = () => {
     }
 
     const defaultMsg = 'Olá! Gostaria de solicitar um orçamento rápido de caçamba com a TRZ Caçambas.';
-    const msg = encodeURIComponent(customMessage || defaultMsg);
-    const nativeAppUrl = `whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${msg}`;
-    const webFallbackUrl = `https://wa.me/${WHATSAPP_RAW_NUMBER}?text=${msg}`;
+    const msg = customMessage || defaultMsg;
+    const waUrl = getWhatsAppUrl(msg);
 
-    // Brief animation duration (600ms) to display the feedback message clearly, then dispatch direct link
+    // Brief animation duration (600ms) to display the feedback message clearly, then dispatch direct wa.me link
     setTimeout(() => {
-      try {
-        window.location.href = nativeAppUrl;
-      } catch {
-        window.location.href = webFallbackUrl;
-      }
-
-      // Safety fallback to web url if native protocol is unhandled
-      setTimeout(() => {
-        window.location.href = webFallbackUrl;
-      }, 1500);
+      window.location.href = waUrl;
     }, 600);
   };
 
@@ -189,7 +179,7 @@ export const ContatoBioPage: React.FC = () => {
           data-gtm="whatsapp-conversion"
           data-track="lead"
           role="button"
-          href={`whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${encodeURIComponent('Olá! Gostaria de solicitar um orçamento rápido de caçamba com a TRZ Caçambas.')}`}
+          href={getWhatsAppUrl('Olá! Gostaria de solicitar um orçamento rápido de caçamba com a TRZ Caçambas.')}
           onClick={handleMainClick}
           aria-live="polite"
           className={`w-full py-4 px-5 rounded-2xl text-white font-black text-center uppercase tracking-wider shadow-2xl flex items-center justify-center gap-3 transition-all duration-300 mb-4 ring-4 cursor-pointer ${
@@ -235,7 +225,7 @@ export const ContatoBioPage: React.FC = () => {
           </span>
 
           <a
-            href={`whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${encodeURIComponent('Olá! Preciso de um orçamento de caçamba para uma Reforma.')}`}
+            href={getWhatsAppUrl('Olá! Preciso de um orçamento de caçamba para uma Reforma.')}
             onClick={(e) => handleCategoryClick(e, 'Olá! Preciso de um orçamento de caçamba para uma Reforma.')}
             className="w-full p-3.5 rounded-xl bg-white/10 hover:bg-[#DE722B] border border-white/15 text-white font-bold text-xs uppercase tracking-wide flex items-center justify-between transition-colors shadow-sm cursor-pointer"
           >
@@ -247,7 +237,7 @@ export const ContatoBioPage: React.FC = () => {
           </a>
 
           <a
-            href={`whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${encodeURIComponent('Olá! Gostaria de um orçamento de caçamba para Construção Civil.')}`}
+            href={getWhatsAppUrl('Olá! Gostaria de um orçamento de caçamba para Construção Civil.')}
             onClick={(e) => handleCategoryClick(e, 'Olá! Gostaria de um orçamento de caçamba para Construção Civil.')}
             className="w-full p-3.5 rounded-xl bg-white/10 hover:bg-[#DE722B] border border-white/15 text-white font-bold text-xs uppercase tracking-wide flex items-center justify-between transition-colors shadow-sm cursor-pointer"
           >
@@ -259,7 +249,7 @@ export const ContatoBioPage: React.FC = () => {
           </a>
 
           <a
-            href={`whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${encodeURIComponent('Olá! Preciso de caçamba para Demolição / Retirada de Entulho.')}`}
+            href={getWhatsAppUrl('Olá! Preciso de caçamba para Demolição / Retirada de Entulho.')}
             onClick={(e) => handleCategoryClick(e, 'Olá! Preciso de caçamba para Demolição / Retirada de Entulho.')}
             className="w-full p-3.5 rounded-xl bg-white/10 hover:bg-[#DE722B] border border-white/15 text-white font-bold text-xs uppercase tracking-wide flex items-center justify-between transition-colors shadow-sm cursor-pointer"
           >
@@ -271,7 +261,7 @@ export const ContatoBioPage: React.FC = () => {
           </a>
 
           <a
-            href={`whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${encodeURIComponent('Olá! Preciso de uma caçamba com urgência (entrega em até 1h). Vocês têm disponibilidade para minha cidade?')}`}
+            href={getWhatsAppUrl('Olá! Preciso de uma caçamba com urgência (entrega em até 1h). Vocês têm disponibilidade para minha cidade?')}
             onClick={(e) => handleCategoryClick(e, 'Olá! Preciso de uma caçamba com urgência (entrega em até 1h). Vocês têm disponibilidade para minha cidade?')}
             className="w-full p-3.5 rounded-xl bg-[#DE722B]/20 hover:bg-[#DE722B] border border-[#DE722B]/40 text-white font-bold text-xs uppercase tracking-wide flex items-center justify-between transition-colors shadow-sm cursor-pointer"
           >
@@ -302,7 +292,7 @@ export const ContatoBioPage: React.FC = () => {
         {/* 10. Botão Flutuante de Fixação Inferior (Mobile Sticky) com Logo WhatsApp */}
         <div className="fixed bottom-3 left-4 right-4 max-w-md mx-auto z-50 sm:hidden">
           <a
-            href={`whatsapp://send?phone=${WHATSAPP_RAW_NUMBER}&text=${encodeURIComponent('Olá! Gostaria de solicitar um orçamento rápido de caçamba com a TRZ Caçambas.')}`}
+            href={getWhatsAppUrl('Olá! Gostaria de solicitar um orçamento rápido de caçamba com a TRZ Caçambas.')}
             onClick={handleMainClick}
             className="w-full py-3.5 px-5 rounded-xl bg-[#25D366] text-white font-black text-sm uppercase tracking-wider shadow-2xl flex items-center justify-center gap-2.5 border border-white/20 active:scale-95 transition-transform"
           >
