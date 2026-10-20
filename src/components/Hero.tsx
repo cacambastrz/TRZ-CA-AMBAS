@@ -30,11 +30,11 @@ export const Hero: React.FC = () => {
               <div className="absolute -bottom-3 -left-3 w-8 h-8 bg-[#DE722B] transform rotate-45 z-20 shadow-lg hidden sm:block" />
 
               {/* Main Image Container with Truck */}
-              <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-gradient-to-br from-slate-900/60 to-[#071526] p-2 sm:p-4 aspect-[16/11] sm:aspect-[16/10] lg:aspect-[4/3] flex items-center justify-center">
+              <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-slate-900 aspect-[4/3] flex items-center justify-center">
                 <img
                   src={TRZ_ASSETS.caminhao}
                   alt="Caminhão TRZ Caçambas para transporte de entulho"
-                  className="w-full h-full object-contain object-center transform group-hover:scale-103 transition-transform duration-500 drop-shadow-2xl"
+                  className="w-full h-full object-cover object-center transform group-hover:scale-103 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                   loading="eager"
                 />

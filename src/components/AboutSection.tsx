@@ -93,11 +93,11 @@ export const AboutSection: React.FC = () => {
 
           {/* Right Column: Visual Showcase with Caçambas Asset */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-gradient-to-br from-[#0D2340] to-[#071526] p-8 shadow-xl flex flex-col items-center justify-center text-center">
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-gradient-to-br from-[#0D2340] to-[#071526] p-4 sm:p-6 shadow-xl flex flex-col items-center justify-center text-center">
               <img
                 src={TRZ_ASSETS.cacambas}
                 alt="Caçambas TRZ para descarte de entulho"
-                className="max-h-60 w-auto object-contain drop-shadow-2xl mb-4"
+                className="w-full h-56 sm:h-64 object-cover rounded-xl shadow-2xl mb-4"
                 loading="lazy"
                 referrerPolicy="no-referrer"
               />

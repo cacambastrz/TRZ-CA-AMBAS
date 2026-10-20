@@ -110,11 +110,11 @@ export const VolumeGuideSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-5 h-64 lg:h-full relative min-h-[260px] bg-gradient-to-br from-slate-900 to-[#071526] p-6 flex items-center justify-center">
+            <div className="lg:col-span-5 h-64 lg:h-full relative min-h-[260px] overflow-hidden">
               <img
                 src={TRZ_ASSETS.cacambas}
                 alt="Caçambas TRZ para obras e reformas"
-                className="max-h-64 max-w-full object-contain drop-shadow-xl"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
                 referrerPolicy="no-referrer"
               />
