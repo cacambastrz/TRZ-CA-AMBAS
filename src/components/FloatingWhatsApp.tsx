@@ -1,6 +1,6 @@
 import React from 'react';
-import { MessageCircle, ArrowRight } from 'lucide-react';
 import { getWhatsAppUrl, WHATSAPP_DISPLAY_PHONE } from '../utils/whatsapp.ts';
+import { WhatsAppIcon } from './WhatsAppIcon.tsx';
 
 export const FloatingWhatsApp: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ export const FloatingWhatsApp: React.FC = () => {
           aria-label="Abrir conversa no WhatsApp com a TRZ Caçambas"
         >
           <div className="relative">
-            <MessageCircle className="w-6 h-6 text-white" />
+            <WhatsAppIcon className="w-6 h-6 text-white" />
             <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-white rounded-full" />
           </div>
           <div className="flex flex-col text-left pr-1 leading-tight">
@@ -49,7 +49,7 @@ export const FloatingWhatsApp: React.FC = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#25D366] hover:bg-[#20BD5A] active:scale-95 text-white text-xs font-bold rounded-lg shadow-md shrink-0 whitespace-nowrap"
         >
-          <MessageCircle className="w-4 h-4" />
+          <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
           <span>Pedir no WhatsApp</span>
         </a>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
 import { ServicesSection } from './components/ServicesSection.tsx';
@@ -11,11 +11,48 @@ import { ContactSection } from './components/ContactSection.tsx';
 import { Footer } from './components/Footer.tsx';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp.tsx';
 import { PrivacyModal } from './components/PrivacyModal.tsx';
+import { ContatoBioPage } from './pages/ContatoBioPage.tsx';
+
+function isContatoPath(): boolean {
+  if (typeof window === 'undefined') return false;
+  const path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
+  const hash = window.location.hash.toLowerCase();
+  const search = new URLSearchParams(window.location.search);
+
+  return (
+    path === '/contato' ||
+    hash === '#/contato' ||
+    hash === '#contato-bio' ||
+    search.get('page') === 'contato' ||
+    search.get('p') === 'contato'
+  );
+}
 
 export default function App() {
+  const [isContato, setIsContato] = useState<boolean>(() => isContatoPath());
   const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
   const [modalTab, setModalTab] = useState<'privacidade' | 'termos'>('privacidade');
 
+  useEffect(() => {
+    const handleRouteCheck = () => {
+      setIsContato(isContatoPath());
+    };
+
+    window.addEventListener('popstate', handleRouteCheck);
+    window.addEventListener('hashchange', handleRouteCheck);
+    return () => {
+      window.removeEventListener('popstate', handleRouteCheck);
+      window.removeEventListener('hashchange', handleRouteCheck);
+    };
+  }, []);
+
+  // ROTA /contato: Página estilo link na bio para alta conversão no WhatsApp
+  // Sem menu, sem rodapé tradicional, sem links de saída, apenas CNPJ e foco mobile
+  if (isContato) {
+    return <ContatoBioPage />;
+  }
+
+  // ROTA PRINCIPAL /: Site institucional completo
   const handleOpenPrivacy = (tab: 'privacidade' | 'termos') => {
     setModalTab(tab);
     setPrivacyModalOpen(true);
@@ -33,7 +70,7 @@ export default function App() {
         {/* 3. Services Section (Reformas, Construção Civil, Demolição com CTAs diretos) */}
         <ServicesSection />
 
-        {/* 4. Visual Needs Guide (Pequena reforma, obra residencial, maior volume sem capacidades numéricas fixas) */}
+        {/* 4. Visual Needs Guide (Pequena reforma, obra residencial, maior volume) */}
         <VolumeGuideSection />
 
         {/* 5. How It Works (3 passos ágeis direto para WhatsApp) */}
@@ -48,7 +85,7 @@ export default function App() {
         {/* 8. FAQ Section (Dúvidas frequentes sobre cidades, sede, descarte e regras) */}
         <FaqSection />
 
-        {/* 9. Direct Contact Section (Telefone +55 (35) 9994-3426, CNPJ, Sede e botão WhatsApp direto) */}
+        {/* 9. Direct Contact Section (Telefone, CNPJ, Sede e botão WhatsApp direto) */}
         <ContactSection />
       </main>
 
